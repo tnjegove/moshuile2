@@ -46,7 +46,7 @@ public class MainActivity extends AppCompatActivity {
                         .setAction("Action", null).show();
             }
         });
-        new ConnectTask().execute("");
+        //new ConnectTask().execute("");
     }
 
     @Override
