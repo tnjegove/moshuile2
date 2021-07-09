@@ -35,7 +35,7 @@ public class HomeActivity extends AppCompatActivity implements View.OnClickListe
 
         switch (view.getId()) {
             case R.id.cCamera:
-                i = new Intent(this, MainActivity.class);
+                i = new Intent(this, CameraActivity.class);
                 startActivity(i);
                 break;
 
