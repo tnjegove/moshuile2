@@ -5,6 +5,7 @@ import android.content.Intent;
 import android.graphics.Color;
 import android.net.Uri;
 import android.os.Bundle;
+import android.util.DisplayMetrics;
 import android.util.Log;
 import android.view.SurfaceHolder;
 import android.view.SurfaceView;
@@ -43,6 +44,8 @@ public class VideoActivity extends Activity implements IVLCVout.Callback  {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.sample);
 
+
+
         // Get URL
         Intent intent = getIntent();
         rtspUrl = intent.getExtras().getString(RTSP_URL);
@@ -61,6 +64,11 @@ public class VideoActivity extends Activity implements IVLCVout.Callback  {
         options.add("--file-logging");
         options.add("--logfile=vlc-log.txt");
 
+        DisplayMetrics displayMetrics = new DisplayMetrics();
+        getWindowManager().getDefaultDisplay().getMetrics(displayMetrics);
+        mVideoHeight = displayMetrics.heightPixels;
+        mVideoWidth = displayMetrics.widthPixels;
+
 
         libvlc = new LibVLC(getApplicationContext(), options);
         holder.setKeepScreenOn(true);
@@ -72,13 +80,20 @@ public class VideoActivity extends Activity implements IVLCVout.Callback  {
         // Set up video output
         final IVLCVout vout = mMediaPlayer.getVLCVout();
         vout.setVideoView(mSurface);
-        //vout.setSubtitlesView(mSurfaceSubtitles);
+        vout.setWindowSize(mVideoWidth,mVideoHeight);
         vout.addCallback(this);
         vout.attachViews();
 
         Media m = new Media(libvlc, Uri.parse(rtspUrl));
 
+        m.setHWDecoderEnabled(true,false);
+        m.addOption(":network-caching=100");
+        m.addOption(":clock-jitter=0");
+        m.addOption(":clock-synchro=0");
+        m.addOption(":fullscreen");
         mMediaPlayer.setMedia(m);
+        mMediaPlayer.setAspectRatio("16:9");
+        mMediaPlayer.setScale(1.8f);
         mMediaPlayer.play();
 
     }
