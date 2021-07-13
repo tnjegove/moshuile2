@@ -2,14 +2,11 @@ package com.example.myapplication;
 
 import android.os.AsyncTask;
 import android.os.Bundle;
-
-import com.google.android.material.snackbar.Snackbar;
+import android.util.Log;
+import android.view.Menu;
+import android.view.MenuItem;
 
 import androidx.appcompat.app.AppCompatActivity;
-
-import android.util.Log;
-import android.view.View;
-
 import androidx.navigation.NavController;
 import androidx.navigation.Navigation;
 import androidx.navigation.ui.AppBarConfiguration;
@@ -17,13 +14,29 @@ import androidx.navigation.ui.NavigationUI;
 
 import com.example.myapplication.databinding.ActivityMainBinding;
 
-import android.view.Menu;
-import android.view.MenuItem;
-
 public class MainActivity extends AppCompatActivity {
 
     private AppBarConfiguration appBarConfiguration;
     private ActivityMainBinding binding;
+    private boolean newCard = false;
+
+    public boolean isNewCard() {
+        return newCard;
+    }
+
+    public void setNewCard(boolean newCard) {
+        this.newCard = newCard;
+    }
+
+    public String getCardID() {
+        return cardID;
+    }
+
+    public void setCardID(String cardID) {
+        this.cardID = cardID;
+    }
+
+    private String cardID;
     TcpClient mTcpClient;
 
     @Override
@@ -39,14 +52,15 @@ public class MainActivity extends AppCompatActivity {
         appBarConfiguration = new AppBarConfiguration.Builder(navController.getGraph()).build();
         NavigationUI.setupActionBarWithNavController(this, navController, appBarConfiguration);
 
-        binding.fab.setOnClickListener(new View.OnClickListener() {
+        /*binding.fab.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG)
                         .setAction("Action", null).show();
             }
-        });
-        //new ConnectTask().execute("");
+        });*/
+
+        new ConnectTask().executeOnExecutor(AsyncTask.THREAD_POOL_EXECUTOR,"");
     }
 
     @Override
@@ -78,6 +92,8 @@ public class MainActivity extends AppCompatActivity {
                 || super.onSupportNavigateUp();
     }
 
+
+
     public class ConnectTask extends AsyncTask<String, String, TcpClient> {
         @Override
         protected TcpClient doInBackground(String... message) {
@@ -101,6 +117,8 @@ public class MainActivity extends AppCompatActivity {
             super.onProgressUpdate(values);
             //response received from server
             Log.d("test", "response " + values[0]);
+            newCard = true;
+            cardID = values[0];
             //process server response here....
         }
 
