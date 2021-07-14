@@ -46,19 +46,25 @@ public class FirstFragment extends Fragment {
         card2.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+
                 Log.d("test","button 2 clicked");
+                NavHostFragment.findNavController(FirstFragment.this).navigate(R.id.action_FirstFragment_to_RfidFragment);
             }
         });
         card3.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+
                 Log.d("test","button 3 clicked");
+                NavHostFragment.findNavController(FirstFragment.this).navigate(R.id.action_FirstFragment_to_RfidFragment);
             }
         });
         card4.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+
                 Log.d("test","button 4 clicked");
+                NavHostFragment.findNavController(FirstFragment.this).navigate(R.id.action_FirstFragment_to_RfidFragment);
             }
         });
         /*binding.buttonFirst.setOnClickListener(new View.OnClickListener() {
@@ -68,7 +74,7 @@ public class FirstFragment extends Fragment {
                         .navigate(R.id.action_FirstFragment_to_SecondFragment);
             }
         });*/
-        new checkCardTask().executeOnExecutor(AsyncTask.THREAD_POOL_EXECUTOR);;
+        new checkCardTask().executeOnExecutor(AsyncTask.THREAD_POOL_EXECUTOR);
     }
 
     @Override
