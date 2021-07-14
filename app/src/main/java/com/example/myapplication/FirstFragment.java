@@ -1,5 +1,6 @@
 package com.example.myapplication;
 
+import android.content.Intent;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.util.Log;
@@ -37,9 +38,15 @@ public class FirstFragment extends Fragment {
         card4 = (CardView) view.findViewById(R.id.cSettings);
 
         card1.setOnClickListener(new View.OnClickListener() {
+
+
             @Override
             public void onClick(View v) {
+                Intent intent;
                 Log.d("test","button 1 clicked");
+                intent = new Intent(getActivity().getApplicationContext(), CameraActivity.class);
+                startActivity(intent);
+                //finish();
 
 
             }
