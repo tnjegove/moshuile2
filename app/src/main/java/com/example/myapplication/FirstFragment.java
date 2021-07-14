@@ -41,6 +41,7 @@ public class FirstFragment extends Fragment {
             public void onClick(View v) {
                 Log.d("test","button 1 clicked");
 
+
             }
         });
         card2.setOnClickListener(new View.OnClickListener() {
