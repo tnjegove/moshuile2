@@ -1,18 +1,22 @@
 package com.example.myapplication;
 
+import android.content.Intent;
+import android.os.AsyncTask;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
 import androidx.annotation.NonNull;
+import androidx.cardview.widget.CardView;
 import androidx.fragment.app.Fragment;
 import androidx.navigation.fragment.NavHostFragment;
 
 import com.example.myapplication.databinding.FragmentFirstBinding;
 
 public class FirstFragment extends Fragment {
-
+    public CardView card1, card2, card3, card4;
     private FragmentFirstBinding binding;
 
     @Override
@@ -28,14 +32,57 @@ public class FirstFragment extends Fragment {
 
     public void onViewCreated(@NonNull View view, Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
+        card1 = (CardView) view.findViewById(R.id.cCamera);
+        card2 = (CardView) view.findViewById(R.id.cUid);
+        card3 = (CardView) view.findViewById(R.id.cFaceRecog);
+        card4 = (CardView) view.findViewById(R.id.cSettings);
 
-        binding.buttonFirst.setOnClickListener(new View.OnClickListener() {
+        card1.setOnClickListener(new View.OnClickListener() {
+
+
+            @Override
+            public void onClick(View v) {
+                Intent intent;
+                Log.d("test","button 1 clicked");
+                intent = new Intent(getActivity().getApplicationContext(), CameraActivity.class);
+                startActivity(intent);
+                //finish();
+
+
+            }
+        });
+        card2.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+                Log.d("test","button 2 clicked");
+                NavHostFragment.findNavController(FirstFragment.this).navigate(R.id.action_FirstFragment_to_RfidFragment);
+            }
+        });
+        card3.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+                Log.d("test","button 3 clicked");
+                NavHostFragment.findNavController(FirstFragment.this).navigate(R.id.action_FirstFragment_to_RfidFragment);
+            }
+        });
+        card4.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+                Log.d("test","button 4 clicked");
+                NavHostFragment.findNavController(FirstFragment.this).navigate(R.id.action_FirstFragment_to_RfidFragment);
+            }
+        });
+        /*binding.buttonFirst.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 NavHostFragment.findNavController(FirstFragment.this)
                         .navigate(R.id.action_FirstFragment_to_SecondFragment);
             }
-        });
+        });*/
+        new checkCardTask().executeOnExecutor(AsyncTask.THREAD_POOL_EXECUTOR);
     }
 
     @Override
@@ -44,4 +91,28 @@ public class FirstFragment extends Fragment {
         binding = null;
     }
 
+    public class checkCardTask extends AsyncTask<Void, Void, Void> {
+
+        @Override
+        protected void onPostExecute(Void aVoid) {
+            super.onPostExecute(aVoid);
+
+                NavHostFragment.findNavController(FirstFragment.this).navigate(R.id.action_FirstFragment_to_SecondFragment);
+
+
+
+        }
+        @Override
+        protected Void doInBackground(Void... voids) {
+
+            while (((MainActivity)getActivity()).isNewCard()==false) {
+
+            }
+            if (((MainActivity)getActivity()).isNewCard()==true) Log.d("asynctaskCheckCard", "new card is true");
+
+            return null;
+        }
+
+
+    }
 }

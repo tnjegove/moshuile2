@@ -14,6 +14,9 @@
         <action
             android:id="@+id/action_FirstFragment_to_SecondFragment"
             app:destination="@id/SecondFragment" />
+        <action
+            android:id="@+id/action_FirstFragment_to_RfidFragment"
+            app:destination="@id/RfidFragment" />
     </fragment>
     <fragment
         android:id="@+id/SecondFragment"
@@ -24,5 +27,16 @@
         <action
             android:id="@+id/action_SecondFragment_to_FirstFragment"
             app:destination="@id/FirstFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/RfidFragment"
+        android:name="com.example.myapplication.RfidFragment"
+        android:label="@string/first_fragment_label"
+        tools:layout="@layout/fragment_rfid">
+
+        <action
+            android:id="@+id/action_RfidFragment_to_FirstFragment"
+            app:destination="@id/FirstFragment"
+            />
     </fragment>
 </navigation>
