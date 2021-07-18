@@ -1,10 +1,13 @@
 package com.example.myapplication;
 
+import android.graphics.Bitmap;
+import android.os.AsyncTask;
 import android.os.Bundle;
 import android.os.SystemClock;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageView;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
@@ -15,10 +18,12 @@ import com.ebanx.swipebtn.OnStateChangeListener;
 import com.ebanx.swipebtn.SwipeButton;
 import com.example.myapplication.databinding.FragmentSecondBinding;
 
-public class SecondFragment extends Fragment {
+public class SecondFragment extends Fragment implements LoadImageTask.Listener{
 
     private FragmentSecondBinding binding;
     private SwipeButton swipeButton;
+    private ImageView imageView;
+    public static final String IMAGE_URL = "http://192.168.178.45/capture?_cb=1626625005526";
 
     @Override
     public View onCreateView(
@@ -34,6 +39,7 @@ public class SecondFragment extends Fragment {
     public void onViewCreated(@NonNull View view, Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
         swipeButton = view.findViewById(R.id.swipe_button_fragment2);
+        imageView = view.findViewById(R.id.jpegCaptureImage);
         swipeButton.setOnStateChangeListener(new OnStateChangeListener() {
             @Override
             public void onStateChange(boolean active) {
@@ -51,6 +57,8 @@ public class SecondFragment extends Fragment {
                         .navigate(R.id.action_SecondFragment_to_FirstFragment);
             }
         });*/
+        new LoadImageTask(this).executeOnExecutor(AsyncTask.THREAD_POOL_EXECUTOR,IMAGE_URL);
+
 
     }
 
@@ -60,4 +68,14 @@ public class SecondFragment extends Fragment {
         binding = null;
     }
 
+
+    @Override
+    public void onImageLoaded(Bitmap bitmap) {
+        imageView.setImageBitmap(bitmap);
+    }
+
+    @Override
+    public void onError() {
+        Toast.makeText(getActivity().getApplicationContext(), "Error Loading Image !", Toast.LENGTH_SHORT).show();
+    }
 }
