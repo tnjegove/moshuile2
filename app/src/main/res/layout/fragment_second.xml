@@ -24,10 +24,10 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/card_view" />
+        app:layout_constraintTop_toBottomOf="@+id/cardview_imagecapture" />
 
     <TextView
-        android:id="@+id/logo"
+        android:id="@+id/textview_logo"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginStart="32dp"
@@ -42,11 +42,11 @@
 
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/card_view"
+        app:layout_constraintTop_toBottomOf="@id/cardview_imagecapture"
         app:layout_constraintVertical_bias="0.685" />
 
     <androidx.cardview.widget.CardView
-        android:id="@+id/card_view"
+        android:id="@+id/cardview_imagecapture"
         android:layout_width="300dp"
         android:layout_height="300dp"
         android:layout_gravity="center"
@@ -55,7 +55,7 @@
         app:layout_constraintBottom_toTopOf="@+id/swipe_button_fragment2"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/logo">
+        app:layout_constraintTop_toBottomOf="@id/textview_logo">
 
         <ImageView
             android:id="@+id/jpegCaptureImage"
@@ -71,7 +71,7 @@
             tools:src="@tools:sample/avatars" />
 
         <TextView
-            android:id="@+id/info_text"
+            android:id="@+id/textView_cardname"
             android:paddingTop="10dp"
             android:paddingRight="10dp"
             android:layout_width="match_parent"

@@ -42,7 +42,7 @@ public class SecondFragment extends Fragment implements LoadImageTask.Listener{
         super.onViewCreated(view, savedInstanceState);
         swipeButton = view.findViewById(R.id.swipe_button_fragment2);
         imageView = view.findViewById(R.id.jpegCaptureImage);
-        textViewUID = view.findViewById(R.id.info_text);
+        textViewUID = view.findViewById(R.id.textView_cardname);
         if (((MainActivity)getActivity()).getCardID().equalsIgnoreCase("53F4653E")) {
             textViewUID.setText("Tadija");
         }
