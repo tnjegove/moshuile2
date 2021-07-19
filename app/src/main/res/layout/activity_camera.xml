@@ -14,7 +14,7 @@
         <TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="RTSPTest"
+            android:text="Camera Stream"
             android:textStyle="bold"
             android:visibility="visible"
             app:layout_constraintBottom_toBottomOf="parent"
@@ -27,15 +27,15 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:ems="10"
-            android:hint="rtsp://{user}:{pass}@host:554/{videosource}"
+            android:hint="Enter IP stream"
             android:inputType="textPersonName"
-            android:text="rtsp://192.168.0.80:8554/mjpeg/1" />
+            android:text="http://192.168.178.45:81/stream" />
 
         <Button
             android:id="@+id/buttonStart"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="Play stream!"
+            android:text="Play"
             tools:layout_editor_absoluteX="151dp"
             tools:layout_editor_absoluteY="120dp" />
 

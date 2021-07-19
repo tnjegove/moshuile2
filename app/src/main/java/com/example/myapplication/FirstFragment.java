@@ -42,11 +42,15 @@ public class FirstFragment extends Fragment {
 
             @Override
             public void onClick(View v) {
-                Intent intent;
+                Intent intent = new Intent(getActivity().getApplicationContext(), VideoActivity.class);
+                //EditText textRTSP = (EditText)findViewById(R.id.textRTSPUrl);
+                intent.putExtra(VideoActivity.RTSP_URL, "http://192.168.178.45:81/stream");
+                startActivity(intent);
+                /*Intent intent;
                 Log.d("test","button 1 clicked");
                 intent = new Intent(getActivity().getApplicationContext(), CameraActivity.class);
                 startActivity(intent);
-                //finish();
+                //finish();*/
 
 
             }

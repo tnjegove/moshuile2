@@ -4,28 +4,94 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".SecondFragment">
-    <LinearLayout
+    tools:context=".SecondFragment"
+    android:background="@drawable/background">
+
+
+    <com.ebanx.swipebtn.SwipeButton
+        android:id="@+id/swipe_button_fragment2"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:orientation="vertical">
+        android:layout_height="wrap_content"
+        android:layout_marginTop="72dp"
+        app:button_image_disabled="@drawable/ic_baseline_lock_open_24"
+        app:inner_text="Unlock"
+        app:inner_text_background="@drawable/shape_rounded"
+        app:inner_text_bottom_padding="18dp"
 
+        app:inner_text_color="@android:color/white"
+        app:inner_text_size="16sp"
+        app:inner_text_top_padding="18dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/cardview_imagecapture" />
 
-        <com.ebanx.swipebtn.SwipeButton
-            android:id="@+id/swipe_button_fragment2"
+    <TextView
+        android:id="@+id/textview_logo"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="32dp"
+        android:layout_marginTop="8dp"
+
+        android:paddingBottom="50dp"
+        android:text="Moshuile"
+        android:textColor="@color/white"
+        android:textSize="24sp"
+        app:layout_constraintBottom_toTopOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/cardview_imagecapture"
+        app:layout_constraintVertical_bias="0.685" />
+
+    <androidx.cardview.widget.CardView
+        android:id="@+id/cardview_imagecapture"
+        android:layout_width="300dp"
+        android:layout_height="300dp"
+        android:layout_gravity="center"
+        android:paddingTop="50dp"
+        app:cardCornerRadius="4dp"
+        app:layout_constraintBottom_toTopOf="@+id/swipe_button_fragment2"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/textview_logo">
+
+        <ImageView
+            android:id="@+id/jpegCaptureImage"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginStart="20dp"
-            android:layout_marginEnd="20dp"
-            app:button_image_disabled="@drawable/ic_baseline_lock_open_24"
-            app:inner_text="Unlock"
-            app:inner_text_background="@drawable/shape_rounded"
-            app:inner_text_bottom_padding="18dp"
-            app:inner_text_color="@android:color/white"
-            app:inner_text_size="16sp"
+            android:layout_marginTop="84dp"
+            android:paddingBottom="20dp"
+            android:contentDescription="@string/image_description_second_fragment"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.0"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            tools:src="@tools:sample/avatars" />
 
-            app:inner_text_top_padding="18dp" />
-    </LinearLayout>
+        <TextView
+            android:id="@+id/textView_cardname"
+            android:textSize="15sp"
+            android:paddingTop="10dp"
+            android:paddingRight="10dp"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:text="UID Name: " />
+    </androidx.cardview.widget.CardView>
+
+    <com.google.android.material.floatingactionbutton.FloatingActionButton
+        android:id="@+id/floatingActionButton"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="180dp"
+        android:layout_marginTop="33dp"
+        android:layout_marginEnd="180dp"
+        android:clickable="true"
+        android:src="@drawable/ic_baseline_block_24"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/swipe_button_fragment2" />
 
 
     <!--<TextView
