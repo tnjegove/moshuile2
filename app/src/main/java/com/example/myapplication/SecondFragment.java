@@ -8,6 +8,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
@@ -24,6 +25,7 @@ public class SecondFragment extends Fragment implements LoadImageTask.Listener{
     private SwipeButton swipeButton;
     private ImageView imageView;
     public static final String IMAGE_URL = "http://192.168.178.45/capture?_cb=1626625005526";
+    private TextView textViewUID;
 
     @Override
     public View onCreateView(
@@ -40,6 +42,18 @@ public class SecondFragment extends Fragment implements LoadImageTask.Listener{
         super.onViewCreated(view, savedInstanceState);
         swipeButton = view.findViewById(R.id.swipe_button_fragment2);
         imageView = view.findViewById(R.id.jpegCaptureImage);
+        textViewUID = view.findViewById(R.id.info_text);
+        if (((MainActivity)getActivity()).getCardID().equalsIgnoreCase("53F4653E")) {
+            textViewUID.setText("Tadija");
+        }
+        if (((MainActivity)getActivity()).getCardID().equalsIgnoreCase("0A0C5BB4")) {
+            textViewUID.setText("Jack");
+        }
+        if (((MainActivity)getActivity()).getCardID().equalsIgnoreCase("3CF6C333")) {
+            textViewUID.setText("Laura");
+        }
+
+
         swipeButton.setOnStateChangeListener(new OnStateChangeListener() {
             @Override
             public void onStateChange(boolean active) {
