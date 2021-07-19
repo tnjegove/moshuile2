@@ -18,6 +18,7 @@ import androidx.navigation.fragment.NavHostFragment;
 import com.ebanx.swipebtn.OnStateChangeListener;
 import com.ebanx.swipebtn.SwipeButton;
 import com.example.myapplication.databinding.FragmentSecondBinding;
+import com.google.android.material.floatingactionbutton.FloatingActionButton;
 
 public class SecondFragment extends Fragment implements LoadImageTask.Listener{
 
@@ -26,6 +27,7 @@ public class SecondFragment extends Fragment implements LoadImageTask.Listener{
     private ImageView imageView;
     public static final String IMAGE_URL = "http://192.168.178.45/capture?_cb=1626625005526";
     private TextView textViewUID;
+    private FloatingActionButton floatingActionButton;
 
     @Override
     public View onCreateView(
@@ -41,6 +43,7 @@ public class SecondFragment extends Fragment implements LoadImageTask.Listener{
     public void onViewCreated(@NonNull View view, Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
         swipeButton = view.findViewById(R.id.swipe_button_fragment2);
+        floatingActionButton = view.findViewById(R.id.floatingActionButton);
         imageView = view.findViewById(R.id.jpegCaptureImage);
         textViewUID = view.findViewById(R.id.textView_cardname);
         if (((MainActivity)getActivity()).getCardID().equalsIgnoreCase("53F4653E")) {
@@ -61,6 +64,17 @@ public class SecondFragment extends Fragment implements LoadImageTask.Listener{
                 SystemClock.sleep(1000);
                 ((MainActivity)getActivity()).setNewCard(false);
                 NavHostFragment.findNavController(SecondFragment.this).navigate(R.id.action_SecondFragment_to_FirstFragment);
+            }
+        });
+
+        floatingActionButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Toast.makeText(getActivity().getApplicationContext(), "Denied Access", Toast.LENGTH_LONG);
+                SystemClock.sleep(1000);
+                ((MainActivity)getActivity()).setNewCard(false);
+                NavHostFragment.findNavController(SecondFragment.this).navigate(R.id.action_SecondFragment_to_FirstFragment);
+
             }
         });
 
